@@ -14,26 +14,34 @@ public class Person {
         ArrayList<String> words = new ArrayList<>(Arrays.asList("excuse", "facade", "recording", "useful", "case",
                 "fist", "remark", "blast", "bomb", "pardon"));
 
-        public static void playGame() {
-
             String word = words.get(rand.nextInt(words.size()));
             System.out.println("Let's Play Hangman!");
             System.out.println(word);
 
             printWordState(word, playerGuesses);
+            tries(word);
 
             while (true) {
                 if (!getPlayerGuess(scanner, word, playerGuesses)) {
-                    wrongCount--;
+
+
                 }
-                if (wrongCount >= 6) {
+                if (false) {
                     System.out.println("You Lose!");
                     break;
                 }
 
                 if (printWordState(word, playerGuesses)) {
                     System.out.println("You Win!");
-                    break;
+//                    break;
+                    System.out.println("Would you like to play again? yes/no");
+                    String yesOrNo = scanner.nextLine();
+                    if (yesOrNo == "yes") {
+                        continue;
+                    } else {
+                        break;
+
+                    }
                 }
 
 //            System.out.println("Please enter your word guess: ");
@@ -43,7 +51,6 @@ public class Person {
 //            }
             }
         }
-    }
 
     public static boolean printWordState(String word, ArrayList<Character> playerGuesses) {
         int count = 0;
@@ -68,9 +75,10 @@ public class Person {
         return word.contains(letterGuess);
     }
 
-    public static void tries(String word) {
+    public static int tries(String word) {
         int wordLength = word.length();
-
+        System.out.println("You have " + wordLength + " guesses remaining");
+        return wordLength--;
     }
 
 
