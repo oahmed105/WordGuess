@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Person {
+    int guessesRemaining = 0;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
@@ -33,13 +34,7 @@ public class Person {
 
                 if (printWordState(word, playerGuesses)) {
                     System.out.println("You Win!");
-//                    break;
-                    System.out.println("Would you like to play again? yes/no");
-                    String yesOrNo = scanner.nextLine();
-                    if (yesOrNo == "yes") {
-                        continue;
-                    } else {
-                        break;
+                    break;
 
                     }
                 }
@@ -50,7 +45,6 @@ public class Person {
 //                break;
 //            }
             }
-        }
 
     public static boolean printWordState(String word, ArrayList<Character> playerGuesses) {
         int count = 0;
@@ -78,7 +72,7 @@ public class Person {
     public static int tries(String word) {
         int wordLength = word.length();
         System.out.println("You have " + wordLength + " guesses remaining");
-        return wordLength--;
+        return wordLength;
     }
 
 
